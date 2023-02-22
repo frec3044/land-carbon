@@ -38,5 +38,5 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
-data_prep
+data_prep/raw_neon
 assignment/data/*.wal
