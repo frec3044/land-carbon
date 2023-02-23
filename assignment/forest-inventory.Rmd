@@ -135,9 +135,7 @@ Data in databases are spread across tables.  This is done to help reduce the siz
 
 However, what if you want to filter the trees by which domain they are in? What if you want to average the trees at the domain scale?  To do this, you actually need a domain column in the same table as your trees.  "Joining" is how you combine the two tables together.  
 
-Please read more about joins [here](https://r4ds.hadley.nz/joins.html).
-
-There are many types of joins.  [ADD LIST]. 
+To explore joins, first load another table (domains table) and filter to the sites that are desired.
 
 ```{r}
 neon_domains <- tbl(con, "domains") |> 
@@ -145,6 +143,9 @@ neon_domains <- tbl(con, "domains") |>
   collect()
 ```
 
+
+There are many types of joins: left_join, right_join, inner_join full_join that differ in how they handle combining the tables. Read more about joins [here](https://r4ds.hadley.nz/joins.html).
+ 
 We are going to use a left join because we want to keep all the rows in the table on the left of the function call (individual) and merge in the matching data from the right table in the function call (neon_domains).  By using siteID as the matching key (`by = "siteID"`), we are assigning the values in the other columns of the domains table (i.e., domainID) to the rows with matching siteID.  If there are rows in the left table (individual) that don't have matching siteIDs in the right table, the join puts in NA for domainID in the left table.  If there are multiple rows in the right table that match a row in the left table in an error occurs.
 
 ```{r}
@@ -185,7 +186,7 @@ you could filter on the presence of the word "Virginia" in the university variab
 filter(str_detect(university, "Virginia"))
 ```
 
-In the NEON data, each tree has an individualID.  Imagine that we did not have our table with domainID but you only wanted trees from domain 7 (`D07`).  Notice how the individualID is a string and the string has the domainID in it (example below is from the first row of the data).
+Each tree has an individualID in the NEON data   Imagine that we did not have our table with domainID but you only wanted trees from domain 7 (`D07`).  Notice how the individualID is a string and the string has the domainID in it (example below is from the first row of the data).
 
 ```{r}
 individual$individualID[1]
@@ -221,35 +222,22 @@ Overall, the `stringr` package in the tidyverse is very useful for working with 
 
 ## Part 3: Examine data
 
+The database you will be analyzing has five tables but you will be focusing on four of them (the domain table was just for demonstration above).  The structure of the data described in the figure below.  The arrows designate the the different "keys" that link across the tables.  The other variables are the data in the tables that you will use for the analysis.
 
 ![database structure](img/database_structure.png) 
 
-![database structure](img/plot_design.png)     
+- When and individual tree is first measured in a plot (plotID) it is given an individualID and a species identification (TaxonID).  This is saved in the mapping_tagging table.   
+- Each time a tree (individualID) is measured the date of measurement is recorded (Year), the status of the live (is it alive or dead), and the diameter (in centimeters) of the stem at breast height (stemDiameter). This is saved in the individual table.   
+- Each plot (plotID) is within a site (siteID).  Each plot has a plotType to designate where in the site it is located (i.e., around the center measurement tower), the vegetation class of the plot is recorded (nlcdClass), and the area (in square meters) of the plot is recorded (totalSampledAreaTrees).  This is saved in the plot table.   
+
+The figure below is diagrams this NEON data collection design.
+![database structure](img/plot_design.png)       
+
+- Across the U.S. in non-NEON sites, researchers have measured trees diameters and cut down the trees to weight them.  For each species (taxonID), they then develop equations that use diameter (in centimeters) to predict the weight (biomass).  The equation has two parameters (B0,B1).  This is saved in the allometrics table. The figure below is an example relations between diameter and biomass. The equation for converting diameter to biomass is at the bottom of Table 4 in Jenkins et al. 2003. 
+
 ![database structure](img/allometrics_plot.png)    
 
-
-**Answer the following questions:** 
-
-1) How are the following columns in the data product related?
-
-  * siteID:   
-  * plotID:   
-  * individualID:   
-  * taxonID:   
-  * year:   
-
-2) What information to you need to calculate live vegetation stocks at the individual tree, plot, and site level - refer to **Background on estimating carbon stocks** and the Science Introduction presentation.
-  
-  * individual tree:   
-  * plot:   
-  * site:   
-  
-3) Based you answer to #2, what are the variable names in the data product that have the information that you need?
-
-
-4) Based you answer to #3, what tables are those variables names found?
-
-## Part 5: Calculate carbon in live trees
+## Part 4: Calculate carbon in live trees
 
 This step will challenge you to develop a workflow using the data science skills to calculate the carbon stocks in live trees at each of the four sites.  For each site, you should have a **site-level** mean carbon stock in **live trees** for **each year** with measurements.  Your estimate will be from the plots that are sampling the ecosystem under the flux tower - called **tower** plots.  See https://www.neonscience.org/field-sites/field-sites-map/BART for an example map of a plot with the tower plots labeled (Tower Base Plot)
 
@@ -264,30 +252,54 @@ Hints for calculating carbon in live trees:
 
 Remember to review the description in **Background on estimating carbon stocks** about how to calculate carbon stocks.
 
+**Question 2**
+
+Add code to calculate the total tree carbon for each at each site
+
+**Answer 2**
+
 ```{r}
 #INSERT CODE
 ```
 
-## Part 6:  Create report
+## Part 4: Create report
 
 I am looking for the following plots, tables, and text in the Rmarkdown document:
 
-- A figure showing the mean live tree carbon stocks in each site and year. You will have year on the axis and carbon stocks on the y-axis with different lines for each site.  Remember to have clear axis labels and to include the units. Here is an example of the plot for a different set of sites.  
+**Question 3**
+
+Generate a figure showing the mean live tree carbon stocks in each site and year. You will have year on the axis and carbon stocks on the y-axis with different lines for each site.  Be sure your figures are complete with units, labels, and a title.  Here is an example of the plot for a different set of sites.  
 
 ![Example plot](img/example_plot.png)   
 
+**Answer 3**
 ```{r}
 #INSERT CODE
 ```
 
-- Summarized table of values for the site level carbon stocks averaged across years and plots (I recommend using the `kable()` function to generate a clean looking table).
+**Question 4**
+
+Generate a table of values for the site level carbon stocks averaged across years and plots (I recommend using the `kable()` function to generate a clean looking table).
+
+**Answer 4**
 
 ```{r}
 #INSERT CODE
 ```
 
-- Text describing issues that you had with your analysis, concerns you have with your analysis, and concerns you have with the data.
+**Question 5**
+
+Describe any issues that you had with your analysis, concerns you have with your analysis, and concerns you have with the data.
+
+**Answer 5:**
   
-- Text describing whether your data analysis supported your hypothesis from Part #1 and, if not, possible reasons why it did not.
+**Question 6**
 
-Be sure your figures are complete with units, labels, and a title.  Be sure your figures and tables are legible when knitted.
+Describe whether your data analysis supported your hypothesis from Part #1 and, if not, possible reasons why it did not.
+
+**Answer 6**
+
+
+# Knitting and committing
+
+Remember to Knit your document as a `github_document` and comment+push to GitHub your code, knitted document, and any files in the `figure-gfm` subdirectory that was created when you knitted the document.
