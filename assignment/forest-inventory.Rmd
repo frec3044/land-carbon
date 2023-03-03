@@ -222,7 +222,7 @@ Overall, the `stringr` package in the tidyverse is very useful for working with 
 
 ## Part 3: Examine data
 
-The database you will be analyzing has five tables but you will be focusing on four of them (the domain table was just for demonstration above).  The structure of the data described in the figure below.  The arrows designate the the different "keys" that link across the tables.  The other variables are the data in the tables that you will use for the analysis.
+The database you will be analyzing has five tables but you will be focusing on four of them (the domain table was just for demonstration above).  The structure of the data described in the figure below. The arrows designate the different "keys" that link across the tables. The other variables are the data in the tables that you will use for the analysis.
 
 ![database structure](img/database_structure.png) 
 
