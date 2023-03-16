@@ -7,14 +7,18 @@ library(tidyverse)
 dir.create("data_prep/raw_neon",showWarnings = FALSE)
 dir.create("assignment/data",showWarnings = FALSE)
 Sys.setenv("NEONSTORE_HOME" = normalizePath("data_prep/raw_neon"))
-neonstore::neon_download(product = "DP1.10098.001", site = c("ABBY", "ORNL", "SERC",
-                                                             "TALL", "UNDE", "BART",
-                                                             "DEJU", "BLAN","MLBS",
-                                                             "OSBS","GRSM"))
 
-vst_apparentindividual <- neonstore::neon_read(table = "vst_apparentindividual-basic")
-map_tag_table <- neonstore::neon_read("vst_mappingandtagging-basic")
-vst_perplotperyear <- neonstore::neon_read("vst_perplotperyear-basic")
+site_list <- c("ABBY", "ORNL", "SERC",
+               "TALL", "UNDE", "BART",
+               "DEJU", "BLAN","MLBS",
+               "OSBS","GRSM")
+
+neonstore::neon_download(product = "DP1.10098.001", site = site_list)
+
+
+vst_apparentindividual <- neonstore::neon_read(table = "vst_apparentindividual-basic", site = site_list)
+map_tag_table <- neonstore::neon_read("vst_mappingandtagging-basic",site = site_list)
+vst_perplotperyear <- neonstore::neon_read("vst_perplotperyear-basic",site = site_list)
 allometrics <- read_csv("data_prep/Allometrics.csv") |>
   distinct()
 
