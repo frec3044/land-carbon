@@ -38,5 +38,7 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
+.DS_Store
 data_prep/raw_neon
 assignment/data/*.wal
+assignment/.DS_Store
