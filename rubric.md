@@ -1,21 +1,35 @@
-# Lake Ice Phenology: Detailed Rubric
+# Land carbon module: Detailed Rubric
 
-*NOT UPDATED FOR MODULE YET*
+## Module weight: 23 pts
 
-## Module weight: 35 pts
+- 2 pts per question for Question 1 (total of 2 pts)
+    - **0pts**: no code or answer provided
+    - **1 pt**: Ordered sites provided but no or limited justification
+    - **2 pt**: Ordered sites provided and insightful justification provided.
 
-- 2 pts per question for Question 1-10 (total of 20 pts)
+- 4 pts per question for Question 2 (total of 4 pts)
+    - **0pts**: no code or answer provided
+    - **1 pt**: Code provided and includes at least one correct tidyverse function but does yield the correct answer
+    - **2 pt**: Code provided and includes at least multiple correct tidyverse function but does yield the correct answer
+    - **4 pt**: Code provide and correctly performs calculation
+
+
+- 4 pts per question for Question 3 (total of 4 pts)
+    - **0pts**: no code or answer provided
+    - **1 pt**: Code provided and includes at least one correct ggplot function but does yield the correct plot
+    - **2 pt**: Code provided and includes at least multiple correct ggplots functions but does yield the correct plot
+    - **4 pt**: Code provide and correctly performs calculation
+
+- 4 pts per question for Question 4 (total of 4 pts)
+    - **0pts**: no code or answer provided
+    - **1 pt**: Code provided and includes at least one correct tidyverse function but does yield the correct answer
+    - **2 pt**: Code provided and includes at least multiple correct tidyverse function but does yield the correct answer
+    - **4 pt**: Code provide and correctly performs calculation
+
+- 2 pts per question for Questions 5-6 (total of 4 pts)
     - **0pts**: no code or answer provided
     - **1 pt**: Code provided and includes at least one correct tidyverse function but is not complete AND/OR (if text answer) response present but limited in depth of answer
     - **2 pt**: Correct provide provided AND/OR insightful text answer provided that correct describes patterns or addresses question.
-    
-- 5 pts per question for Questions 11 & 12 (total of 10 pts)
-    - **0pts**: no code or answer provided
-    - **1 pt**: Code provided and includes at least one correct tidyverse function but is not complete AND/OR (if text answer) response present but limited in depth of answer
-    - **2 pt**: Code, text, and plots include functions that were introduced in the module but the scientific analysis is not valid.
-    - **3 pt**: Code, text, and plots provides valid scientific analysis of observed trends but limited or incorrect interpretation
-    - **4 pt**: Text provides scientific analysis of observed trends and reflects on implications or hypotheses for those patterns and code uses multiple skills covered in the module
-    - **5 pt**: Code, text, and plots provides an analysis that clearly uses the skills and concepts introduced in the module. Highly insightful analysis that goes beyond the questions provided in the template.
 
 - 3 pts for RMarkdown
     - **0pts**: no .md or plots commited. no changes evident on the Rmarkdown file or formatting in Rmarkdown incorrect (e.g. code outside code blocks, text inside code blocks, etc)
