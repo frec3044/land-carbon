@@ -40,9 +40,7 @@ I need carbon stocks using measurements for the following sites within the Natio
 
 Explore the descriptions of our four focal NEON sites at https://www.neonscience.org/field-sites/field-sites-map/list, how the sites look on the satellite image in the site description, and your general knowledge about ecosystem science to develop your hypothesized for the following question: 
 
-**Question 1**
-
-Based on information about location and ecosystem type, rank the sites in order of 1 = most vegetation carbon, 4 = least vegetation carbon. Provide a justification for your ranking.
+**Question 1:** Based on information about location and ecosystem type, rank the sites in order of 1 = most vegetation carbon, 4 = least vegetation carbon. Provide a justification for your ranking.
 
 **Answer 1**
 
@@ -252,11 +250,9 @@ Hints for calculating carbon in live trees:
 
 Remember to review the description in **Background on estimating carbon stocks** about how to calculate carbon stocks.
 
-**Question 2**
+**Question 2:** Add code to calculate the total tree carbon for each at each site
 
-Add code to calculate the total tree carbon for each at each site
-
-**Answer 2**
+**Answer 2:**
 
 ```{r}
 #INSERT CODE
@@ -266,9 +262,7 @@ Add code to calculate the total tree carbon for each at each site
 
 I am looking for the following plots, tables, and text in the Rmarkdown document:
 
-**Question 3**
-
-Generate a figure showing the mean live tree carbon stocks in each site and year. You will have year on the axis and carbon stocks on the y-axis with different lines for each site. Be sure your figures are complete with units, labels, and a title.  Here is an example of the plot for a different set of sites.  
+**Question 3:** Generate a figure showing the mean live tree carbon stocks in each site and year. You will have year on the axis and carbon stocks on the y-axis with different lines for each site. Be sure your figures are complete with units, labels, and a title.  Here is an example of the plot for a different set of sites.  
 
 ![Example plot](img/example_plot.png)   
 
