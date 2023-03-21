@@ -192,8 +192,7 @@ individual$individualID[1]
 You can use the str_detect with a filter to only keep individuals that are in domain 7 using the string `"D07"`.  You can see in the code below that only siteID from D07 remain the dataset.
 
 ```{r}
-individual_domain |> filter(str_detect(individualID, "D07")) |> 
-  distinct(siteID, domainID)
+individual_domain |> filter(str_detect(individualID, "D07"))
 
 ```
  
@@ -266,30 +265,24 @@ I am looking for the following plots, tables, and text in the Rmarkdown document
 
 ![Example plot](img/example_plot.png)   
 
-**Answer 3**
+**Answer 3:**
 ```{r}
 #INSERT CODE
 ```
 
-**Question 4**
+**Question 4:** Generate a table of values for the site level carbon stocks averaged across years and plots (I recommend using the `kable()` function to generate a clean looking table).
 
-Generate a table of values for the site level carbon stocks averaged across years and plots (I recommend using the `kable()` function to generate a clean looking table).
-
-**Answer 4**
+**Answer 4:**
 
 ```{r}
 #INSERT CODE
 ```
 
-**Question 5**
-
-Describe any issues that you had with your analysis, concerns you have with your analysis, and concerns you have with the data.
+**Question 5:** Describe any issues that you had with your analysis, concerns you have with your analysis, and concerns you have with the data.
 
 **Answer 5:**
   
-**Question 6**
-
-Describe whether your data analysis supported your hypothesis from Part #1 and, if not, possible reasons why it did not.
+**Question 6:** Describe whether your data analysis supported your hypothesis from Part #1 and, if not, possible reasons why it did not.
 
 **Answer 6**
 
