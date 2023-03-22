@@ -331,44 +331,59 @@
 </section>
 <section id="atmospheric-co2-is-rising" class="slide level2">
 <h2>Atmospheric CO2 is rising</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="assignment/img/keeling-curve.png"></p>
+</figure>
+</div>
 
 <aside><div>
 <p>https://keelingcurve.ucsd.edu</p>
 </div></aside></section>
 <section id="vegetation-carbon-is-important" class="slide level2">
 <h2>Vegetation carbon is important</h2>
-<p><img data-src="assignment/img/carbon-budget-2022.png"> ::: aside https://doi.org/10.5194/essd-14-4811-2022 :::</p>
-</section>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assignment/img/carbon-budget-2022.png" width="814"></p>
+</figure>
+</div>
+
+<aside><div>
+<p>https://doi.org/10.5194/essd-14-4811-2022</p>
+</div></aside></section>
 <section id="neon" class="slide level2">
 <h2>NEON</h2>
 <iframe src="https://www.youtube.com/embed/39YrzpxVRF8" width="100%" height="85%" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
 </section>
 <section id="neon-81-sites" class="slide level2">
 <h2>NEON: 81 sites</h2>
-<p><img data-src="assignment/img/neon-all-sites.png"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="assignment/img/neon-all-sites.png" width="592"></p>
+</figure>
+</div>
 
 <aside><div>
-<p><a href="https://www.neonscience.org/field-sites/explore-field-sites">Link to NEON sites</a></p>
+<p>https://www.neonscience.org/field-sites/explore-field-sites</p>
 </div></aside></section>
 <section id="neon-woody-carbon" class="slide level2">
 <h2>NEON Woody Carbon</h2>
 <ul>
 <li>Each site has a set of plots (either “tower” or “distributed”)</li>
 <li>Each tree is mapped (species)</li>
-<li>Each year, each tree is measured: live or dead, diameter</li>
+<li>Each year, each tree is measured: status (live or dead) and diameter</li>
 </ul>
 
-<img data-src="assignment/img/plot_design.png" class="r-stretch"></section>
+<img data-src="assignment/img/plot_design.png" class="r-stretch quarto-figure-center"></section>
 <section id="neon-woody-carbon-1" class="slide level2">
 <h2>NEON Woody Carbon</h2>
 <ul>
 <li>Diameter can be converted to biomass using “allometric” relationships</li>
-<li>Biomass can be converted to carbon (biomass x 2)</li>
+<li>Biomass can be converted to carbon (carbon = biomass x 0.5)</li>
 <li>Allometric relationships are from Jenkin et al.&nbsp;2004</li>
 </ul>
 
-<img data-src="assignment/img/allometrics_plot.png" class="r-stretch"></section>
+<img data-src="assignment/img/allometrics_plot.png" class="r-stretch quarto-figure-center"></section>
 <section id="neon-woody-carbon-2" class="slide level2">
 <h2>NEON Woody Carbon</h2>
 <ul>
@@ -377,20 +392,29 @@
 <li>All plots within a site averaged to get a site-level carbon for each year.</li>
 </ul>
 
-<img data-src="assignment/img/plot_design.png" class="r-stretch"></section>
+<img data-src="assignment/img/plot_design.png" class="r-stretch quarto-figure-center"></section>
 <section id="structure-of-data" class="slide level2">
 <h2>Structure of data</h2>
 <ul>
 <li>Data is spread across multiple tables</li>
-<li>The data are stored in a relationship database.</li>
+<li>The data are stored in a relational database.</li>
 </ul>
 
-<img data-src="assignment/img/database_structure.png" class="r-stretch"></section>
+<img data-src="assignment/img/database_structure.png" class="r-stretch quarto-figure-center"></section>
 <section id="new-skills" class="slide level2">
 <h2>New skills</h2>
 <ul>
-<li>Reading in database in R</li>
-<li>Joining tables to create data frames for analysis</li>
+<li>Reading in database in R (<code>collect</code>)</li>
+<li>Joining tables to create data frames for analysis (<code>left_join</code>)</li>
+<li>Filtering on strings (<code>str_detect</code>)</li>
+</ul>
+</section>
+<section id="science-question" class="slide level2">
+<h2>Science Question</h2>
+<ul>
+<li>How much carbon is stored in a forest ecosystem and how does it differ across the U.S.?</li>
+<li>I am a “client” interested in the carbon storage in vegetation of different ecosystems across the continental U.S. to guide my investment in the California Carbon Market.</li>
+<li>Specifically, I want carbon stocks estimates from four sites in NEON</li>
 </ul>
 <div class="footer footer-default">
 
