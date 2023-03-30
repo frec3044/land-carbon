@@ -137,7 +137,9 @@ neon_domains <- tbl(con, "domains") |>
   collect()
 ```
 
-There are many types of joins: left_join, right_join, inner_join full_join that differ in how they handle combining the tables. Read more about joins [here](https://r4ds.hadley.nz/joins.html).
+There are many types of joins: left_join, right_join, inner_join full_join that differ in how they handle combining the tables. 
+
+Read more about joins [here](https://r4ds.hadley.nz/joins.html).
 
 We are going to use a left join because we want to keep all the rows in the table on the left of the function call (individual) and merge in the matching data from the right table in the function call (neon_domains). By using siteID as the matching key (`by = "siteID"`), we are assigning the values in the other columns of the domains table (i.e., domainID) to the rows with matching siteID. If there are rows in the left table (individual) that don't have matching siteIDs in the right table, the join puts in NA for domainID in the left table. If there are multiple rows in the right table that match a row in the left table in an error occurs.
 
@@ -193,9 +195,9 @@ individual_domain |> filter(str_detect(individualID, "D07"))
 
 ```
 
-The stringr package has many other useful functions for working with strings. For example, [`separate_wider_delim`](https://r4ds.hadley.nz/strings.html#sec-string-columns) can be used to separate the individualID into its components.
+The tidyverse has many other useful functions for working with strings. For example, [`separate_wider_delim`](https://r4ds.hadley.nz/strings.html#sec-string-columns) can be used to separate the individualID into its components.
 
-```{r}
+```{r eval = FALSE}
  individual_domain |> 
   separate_wider_delim(
     individualID,
@@ -247,7 +249,7 @@ Remember to review the description in **Background on estimating carbon stocks**
 
 Calculate the vegetation carbon stocks of each site for each year using the following steps: 
 
-**Question 2:** Using join functions to create a table with the following columns: `siteID`, `plotID`, `individualID`,`taxonID`, `Year`, `plantStatus`, `stemDiameter`,`B0`, `B1`.
+**Question 2:** Using join functions to create a table with the following columns: `siteID`, `plotID`, `individualID`,`taxonID`, `year`, `plantStatus`, `stemDiameter`,`B0`, `B1`.
 
 **Answer 2:**
 
@@ -263,7 +265,7 @@ Calculate the vegetation carbon stocks of each site for each year using the foll
 
 ```
 
-**Question 4:** Using the table from Question 3, calculate the total carbon of each plot in each year. Your columns should be: `siteID`. `plotID`, `carbon`
+**Question 4:** Using the table from Question 3, calculate the total carbon of each plot in each year. Your columns should be: `siteID`. `plotID`, `carbon`, `year`
 
 **Answer 4:**
 
@@ -271,7 +273,7 @@ Calculate the vegetation carbon stocks of each site for each year using the foll
 
 ```
 
-**Question 5:** Using the table from Question 4, use a join to associate a plot area and plot type with each plot. Your columns should be: `siteID`, `plotID`, `carbon`, `plotType`, `totalSampledAreaTrees`
+**Question 5:** Using the table from Question 4, use a join to associate a plot area and plot type with each plot. Your columns should be: `siteID`, `plotID`, `carbon`, `plotType`, `totalSampledAreaTrees`,`year`
 
 ```{r}
 
