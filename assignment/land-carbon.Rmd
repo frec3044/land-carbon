@@ -257,7 +257,7 @@ Calculate the vegetation carbon stocks of each site for each year using the foll
 
 ```
 
-**Question 3:** Using the table from Question 2, calculate the carbon of each tree that is alive in each plotID - year combination following the instructions above.
+**Question 3:** Using the table from Question 2, calculate the carbon of each tree that is alive in each `plotID` in each `year` following the instructions provide at the top of Part 4.
 
 **Answer 3:**
 
@@ -279,14 +279,14 @@ Calculate the vegetation carbon stocks of each site for each year using the foll
 
 ```
 
-**Question 6:** Using the table from Question 5, Divide the plot carbon by the plot area. Also, make sure you only have the type of plot we want.
+**Question 6:** Using the table from Question 5, divide the plot carbon by the plot area. Also, make sure you only have the type of plot we want.
 
 ```{r}
 
 ```
 
 
-**Question 7:** Using the table Question 6, average the plots within a site/year combination to get site level carbon for each each
+**Question 7:** Using the table Question 6, average the plots to get a value of carbon per area for each year within each site.
 
 ```{r}
 
@@ -306,7 +306,7 @@ I am looking for the following plots, tables, and text in the Rmarkdown document
 #INSERT CODE
 ```
 
-**Question 9:** Generate a table of values for the site level carbon stocks averaged across years and plots (I recommend using the `kable()` function to generate a clean looking table).
+**Question 9:** Generate a table of carbon stocks values for each site (averaged across years). I recommend using the `kable()` function to generate a clean looking table.
 
 **Answer 9:**
 
