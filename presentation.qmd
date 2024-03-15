@@ -1,6 +1,8 @@
 ---
 title: "Land Carbon Module"
-format: revealjs
+format: 
+  revealjs:
+    embed-resources: true
 editor: visual
 ---
 
