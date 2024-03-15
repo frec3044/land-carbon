@@ -43,7 +43,7 @@ Explore the descriptions of our four focal NEON sites at <https://www.neonscienc
 
 **Question 1:** 
 
-Based on information about location and ecosystem type, rank the sites in order of 1 = most vegetation carbon, 4 = least vegetation carbon. Provide a justification for your ranking.
+Based on information about location and ecosystem type, rank the sites in order of 1 = most vegetation carbon, 4 = least vegetation carbon. Describe the reasons why you choose the order.
 
 **Answer 1**
 
@@ -325,7 +325,7 @@ Generate a table of carbon stocks values for each site (averaged across years). 
 
 **Question 10:** 
 
-Describe whether your data analysis supported your hypothesis from Part #1 and, if not, possible reasons why it did not.
+Describe how your data analysis supports your hypothesis from Question 1. What are the some potential reasons your order did not compare well. If you hypothesized order matched, were the differences among the sites what you expected (e.g., was one site relatively larger than the others)?
 
 **Answer 10:**
 
