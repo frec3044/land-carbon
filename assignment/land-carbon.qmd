@@ -124,6 +124,7 @@ You can `filter` only the rows you want before calling `collect`. Any filtering 
 individual <- tbl(con, "individual") |> 
   filter(siteID %in% c("ABBY","GRSM", "ORNL")) |> 
   collect()
+nrow(individual)
 ```
 
 ### Joining tables in R
