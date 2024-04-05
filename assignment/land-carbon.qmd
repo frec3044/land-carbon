@@ -255,7 +255,7 @@ Calculate the vegetation carbon stocks of each site for each year using the foll
 
 **Question 2:** 
 
-Using join functions and different tables in the databaset to create a new table with the following columns: `siteID`, `plotID`, `individualID`,`taxonID`, `year`, `plantStatus`, `stemDiameter`,`B0`, `B1`.
+Using join functions and different tables in the databaset to create a new table with the following columns: `siteID`, `plotID`, `individualID`,`taxonID`, `year`, `plantStatus`, `stemDiameter`,`B0`, `B1`.  Only include the four focal sites. Use the function `colnames()` to show the column names of your table.
 
 **Answer 2:**
 
@@ -263,7 +263,9 @@ Using join functions and different tables in the databaset to create a new table
 
 ```
 
-**Question 3:** Using the table from Question 2, create a new table that only has live trees and includes a column that is the carbon of each tree in each `plotID` in each `year` following the instructions provide at the top of Part 4.
+**Question 3:** 
+
+Using the table from Question 2, create a new table that only has live trees and includes a column that is the carbon of each tree in each `plotID` in each `year` following the instructions provide at the top of Part 4. Use the function `colnames()` to show the column names of your table.
 
 **Answer 3:**
 
@@ -271,7 +273,9 @@ Using join functions and different tables in the databaset to create a new table
 
 ```
 
-**Question 4:** Using the table from Question 3, calculate the total carbon of each plot in each year. Your columns should be: `siteID`. `plotID`, `carbon`, `year`
+**Question 4:** 
+
+Using the table from Question 3, calculate the total carbon of each plot in each year. Your columns should be: `siteID`. `plotID`, `carbon`, `year`. Use the function `colnames()` to show the column names of your table.
 
 **Answer 4:**
 
@@ -279,20 +283,26 @@ Using join functions and different tables in the databaset to create a new table
 
 ```
 
-**Question 5:** Using the table from Question 4, use a join to associate a plot area and plot type with each plot. Your columns should be: `siteID`, `plotID`, `carbon`, `plotType`, `totalSampledAreaTrees`,`year`
+**Question 5:** 
+
+Using the table from Question 4, use a join to associate a plot area and plot type with each plot. Your columns should be: `siteID`, `plotID`, `carbon`, `plotType`, `totalSampledAreaTrees`,`year`. Use the function `colnames()` to show the column names of your table.
 
 ```{r}
 
 ```
 
-**Question 6:** Using the table from Question 5, divide the plot carbon by the plot area. Also, make sure you only have the type of plot we want.
+**Question 6:** 
+
+Using the table from Question 5, divide the plot carbon by the plot area. Also, make sure you only have the type of plot we want.
 
 ```{r}
 
 ```
 
 
-**Question 7:** Using the table Question 6, average the plots to get a value of carbon per area for each year within each site.
+**Question 7:** 
+
+Using the table Question 6, average the plots to get a value of carbon per area for each year within each site.
 
 ```{r}
 
@@ -304,7 +314,7 @@ I am looking for the following plots, tables, and text in the Rmarkdown document
 
 **Question 8:** 
 
-Generate a figure showing the mean live tree carbon stocks in each site and year. You will have year on the axis and carbon stocks on the y-axis with different lines for each site. Be sure your figures are complete with units, labels, and a title. Here is an example of the plot for a different set of sites.
+Generate a figure showing the mean live tree carbon stocks in site and year. You will have year on the axis and carbon stocks on the y-axis with different lines for each site. Be sure your figures are complete with units, labels, and a title. There should only be four sites on your figure. Here is an example of the plot for a different set of sites.
 
 ![Example plot](img/example_plot.png)
 
