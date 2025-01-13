@@ -43,7 +43,7 @@ Explore the descriptions of our four focal NEON sites at <https://www.neonscienc
 
 **Question 1:** 
 
-Based on information about location and ecosystem type, rank the sites in order of 1 = most vegetation carbon, 4 = least vegetation carbon. Describe the reasons why you choose the order.
+Based on information about location and ecosystem type, rank the sites in order of 1 = most tree vegetation carbon per unit area, 4 = least tree vegetation carbon per unit area. Carbon per unit area is the average carbon the same area at each of the sites (e.g., m2 of land).  Describe the reasons why you choose the order.
 
 **Answer 1**
 
@@ -343,3 +343,8 @@ Describe how your data analysis supports your hypothesis from Question 1. What a
 ## Rendering and committing
 
 Remember to Render your document as a `html` and comment+push to GitHub your code and html document.
+
+# Attribution
+
+Include citation of any AI-generated assistance or discussion with classmates (per policy in syllabus). Proper documentation of AI-generated assistance includes the prompt, the source (e.g., ChatGPT), and the significant parts of the response.  Proper documentation of discussion with classmates include listing their names and the components discussed.  
+
