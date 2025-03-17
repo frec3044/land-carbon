@@ -20,7 +20,7 @@ How much carbon is stored in a forest ecosystem and how does it differ across th
 
 ## Background on estimating carbon stocks
 
-One common approach to estimating carbon in woody vegetation is by measuring the diameter of each individual tree over a certain size in a set area (called a plot). The diameter of each tree is converted to mass (called biomass) using equations that use diameter to predict biomass (called allometric relationships). Allometric relationships are statistical relationships that are created by measuring a tree's diameter before cutting down and weighing it. A general relationship for a species can be created by combining these harvested trees into a single analysis. Allometric relationships typically estimate aboveground biomass which needs to be converted to carbon by multiplying by 0.5 (biomass is about 50% carbon).
+One common approach to estimating carbon in woody vegetation is by measuring the diameter of each individual tree over a certain size in a set area (called a plot). The diameter of each tree is converted to mass (called biomass) using equations that use diameter to predict biomass (called allometric relationships). Allometric relationships are statistical models that are created by measuring a tree's diameter before cutting it down and weighing it. A general relationship for a species can be created by combining these harvested trees into a single analysis. Allometric relationships typically estimate aboveground biomass which needs to be converted to carbon by multiplying by 0.5 (biomass is about 50% carbon).
 
 Total biomass of a tree is the sum of aboveground and belowground carbon. Since belowground carbon is less commonly measured (it requires digging up the tree roots), we can use ratios of aboveground to belowground carbon from a limited set of trees where the entire tree was extracted.  The ratio is used to estimate belowground carbon in trees where we only have diameter measurements.
 
@@ -43,7 +43,7 @@ Explore the descriptions of our four focal NEON sites at <https://www.neonscienc
 
 **Question 1:** 
 
-Based on information about location and ecosystem type, rank the sites in order of 1 = most tree vegetation carbon per unit area, 4 = least tree vegetation carbon per unit area. Carbon per unit area is the average carbon the same area at each of the sites (e.g., m2 of land).  Describe the reasons why you choose the order.
+Based on information about location and ecosystem type, rank the sites in order of 1 = most tree vegetation carbon per unit area, 4 = least tree vegetation carbon per unit area. Carbon per unit area is the average carbon for the same area at each sites (e.g., m2 of land).  *Describe the reasons why you choose the order.*
 
 **Answer 1**
 
@@ -55,7 +55,7 @@ Working with data from NEON, and many other data sources, requires working with 
 
 Furthermore, environmental data can be "big data". There are many definitions of big data but I will use a simple one: the computer memory (RAM, not hard disk) required to store your data is bigger than your computer. When using this "big data", you will crash your computer if you try to load or read in all the data at once.
 
-Note: typical RAM on a laptop is 8 - 16 GB and Hard Disk is 500 GB - 1 TB so you can store more on your hard disk than you can analyze in R.
+Typical RAM on a laptop is 8 - 16 GB and Hard Disk is 500 GB - 1 TB so you can store more on your hard disk than you can analyze in R.
 
 ### Working with databases in R
 
@@ -75,7 +75,8 @@ con <- dbConnect(duckdb(),
                  dbdir="data/neon.duckdb")
 ```
 
-The connection does not load any data into memory for you to analyze. The connections allows to start looking at the database before loading data into memory.\
+The connection does not load any data into memory for you to analyze. The connections allows you to start looking at the database before loading data into memory.\
+
 First, what tables are in the [database](%5Bhttps://r4ds.hadley.nz/databases.html#in-this-book%5D)?
 
 ```{r}
@@ -90,7 +91,7 @@ individual <- tbl(con, "individual")
 
 Imagine that the individual table is huge (e.g., every tree measured by the Forest Service across the U.S.). We don't want to use the `tbl` function to load all the data into RAM because that will cause R to crash.
 
-Fortunately, R uses the concept of "lazy loading". First you can look at the `individual` table to get a preview of the table that looks like the table.
+Fortunately, R uses the concept of "lazy loading". Look at the `individual` table to get a preview of the table that looks like the table.
 
 ```{r}
 individual
@@ -110,7 +111,7 @@ individual <- tbl(con, "individual") |>
 nrow(individual)
 ```
 
-However, "collecting" the entire data table does not leverage the power of using a database because it is pulling the entire data table into memory. The advantage of using a database is that you can only load the data that you actually need. In many cases you don't need all rows or columns of a data table for your analysis.
+However, "collecting" the entire data table does not leverage the power of using a database because it is pulling the entire data table into memory. The advantage of using a database is that you are able to only load the data that you actually need. In many cases you don't need all rows or columns of a data table for your analysis.
 
 For example, the individual table has many more sites (`siteID`) than we want.
 
@@ -118,7 +119,7 @@ For example, the individual table has many more sites (`siteID`) than we want.
 individual |> distinct(siteID)
 ```
 
-You can `filter` only the rows you want before calling `collect`. Any filtering or selecting before a collect call will reduce the size of the data that you are actually moving from hard disk to RAM. The following uses the `%in%` function to asks to keep data from any of the three `siteID` values in the vector.
+You can `filter` only the rows you want before calling `collect`. Any filtering or selecting before a collect call will reduce the size of the data that you are actually moving from hard disk to RAM. The following uses the `%in%` function to ask to keep data from any of the three `siteID` values in the vector.
 
 ```{r}
 individual <- tbl(con, "individual") |> 
@@ -129,11 +130,11 @@ nrow(individual)
 
 ### Joining tables in R
 
-Data in databases are spread across tables. This is done to help reduce the size of the data. For example, if every tree is in a site and each site is in domain, do we need to have a column for the domainID in the same table as the individual trees? We could but adding the extra column with a lot of repeated information (i.e., if there are 90 sites but three domains then the same three domains will be repeated over and over in the column) would require unnecessary use of storage and memory. Or can we have the siteID in the tree table and another table that has the domainID that each site belongs to? This would reduce the storage requirement for the database. Therefore, databases use multiple tables.
+Data in databases are spread across tables. This is done to help reduce the size of the data. For example, if every tree is in a site and each site is in domain, do we need to have a column for the domainID in the same table as the individual trees? We could but adding the extra column with a lot of repeated information (i.e., if there are 90 sites but three domains then the same three domains will be repeated over and over in the column) would require unnecessary use of storage and memory. Alternatively, we have the siteID in the tree table and another table that has the domainID that each site belongs to? This would reduce the storage requirement for the database. Therefore, databases use multiple tables.
 
 However, what if you want to filter the trees by which domain they are in? What if you want to average the trees at the domain scale? To do this, you actually need a domain column in the same table as your trees. "Joining" is how you combine the two tables together.
 
-To explore joins, first load another table (domains table) and filter to the sites that are desired.
+To explore joins,  load another table (domains table) and filter to the sites that are desired.
 
 ```{r}
 neon_domains <- tbl(con, "domains") |> 
@@ -170,7 +171,8 @@ individual_domain |> filter(siteID == "ORNL") |> select(siteID, individualID, do
 One addition skill you will need to use the NEON data is the capacity to filter using part of a string. Thus far you have used strings to filter like the following
 
 ```{r}
-individual_domain |> filter(domainID == "D07") |> 
+individual_domain |> 
+  filter(domainID == "D07") |> 
   select(-plantStatus, -stemDiameter)
 ```
 
@@ -218,11 +220,11 @@ individual_domain |>
   select(project, individualID)
 ```
 
-Overall, the `stringr` package in the tidyverse is very useful for working with strings in data frames. You can learn more [here](https://r4ds.hadley.nz/strings.html#subsetting)
+Overall, the `stringr` package in the tidyverse is very useful for working with strings in data frames. You can learn more [here](https://r4ds.hadley.nz/strings.html#subsetting).
 
 ## Part 3: Examine data
 
-The database you will be analyzing has five tables but you will be focusing on four of them (the domain table was just for demonstration above). The structure of the data described in the figure below. The arrows designate the different "keys" that link across the tables. The other variables are the data in the tables that you will use for the analysis.
+The database you will be analyzing has five tables but you will be focusing on four of them (the domain table was just for demonstration above). The structure of the data is described in the figure below. The arrows designate the different "keys" that link across the tables. The other variables are the data in the tables that you will use for the analysis.
 
 ![database structure](img/database_structure.png)
 
@@ -232,13 +234,13 @@ The database you will be analyzing has five tables but you will be focusing on f
 
 The figure below is diagrams this NEON data collection design. ![database structure](img/plot_design.png)
 
--   Across the U.S. in non-NEON sites, researchers have measured trees diameters and cut down the trees to weight them. For each species (`taxonID`), they then develop equations that use diameter (in centimeters) to predict the weight (biomass). The equation has two parameters (`B0` and `B1`). This is saved in the allometrics table. The figure below is an example relations between diameter and biomass. The equation for converting diameter to biomass is at the bottom of Table 4 in Jenkins et al. 2003.
+-   Across the U.S., researchers have measured trees diameters and cut down the trees to weight them. For each species (`taxonID`), they then develop equations that use diameter (in centimeters) to predict the weight (biomass). The equation has two parameters (`B0` and `B1`). This is saved in the allometrics table. The figure below is an example relations between diameter and biomass. The equation for converting diameter to biomass is at the bottom of Table 4 in Jenkins et al. 2003.
 
 ![database structure](img/allometrics_plot.png)
 
 ## Part 4: Calculate carbon in live trees
 
-This step will challenge you to develop a workflow using the data science skills to calculate the carbon stocks in live trees at each of the four sites. For each site, you should have a **site-level** mean carbon stock in **live trees** for **each year** with measurements. Your estimate will be from the plots that are sampling the ecosystem under the flux tower - called **tower** plots. See <https://www.neonscience.org/field-sites/field-sites-map/BART> for an example map of a plot with the tower plots labeled (Tower Base Plot)
+This step will challenge you to develop a workflow using the data science skills above to calculate the carbon stocks in live trees at each of the four sites. For each site, you should have a **site-level** mean carbon stock in **live trees** for **each year** with measurements. Your estimate will be from the plots that are sampling the ecosystem under the flux tower - called **tower** plots. See <https://www.neonscience.org/field-sites/field-sites-map/BART> for an example map of a plot with the tower plots labeled (Tower Base Plot)
 
 Hints for calculating carbon in live trees:
 
@@ -310,7 +312,7 @@ Using the table Question 6, average the plots to get a value of carbon per area 
 
 ## Part 4: Create report
 
-I am looking for the following plots, tables, and text in the Rmarkdown document:
+I am looking for the following plots, tables, and text in the Quarto document:
 
 **Question 8:** 
 
@@ -326,7 +328,7 @@ Generate a figure showing the mean live tree carbon stocks in site and year. You
 
 **Question 9:** 
 
-Generate a table of carbon stocks values for each site (averaged across years). I recommend using the `kable()` function to generate a clean looking table.
+Generate a table of carbon stocks values for each site (averaged across years). Use the `kable()` function to generate a clean looking table.
 
 **Answer 9:**
 

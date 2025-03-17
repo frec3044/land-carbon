@@ -8,7 +8,7 @@ editor: visual
 
 ## Atmospheric CO2 is rising
 
-![](assignment/img/keeling-curve.png){fig-align="center"}
+![](assignment/img/keeling-curve.png){fig-align="center"  fig-alt="graph of atmospheric CO2 over time from the Keeling Curve"}
 
 ::: aside
 https://keelingcurve.ucsd.edu
@@ -16,7 +16,7 @@ https://keelingcurve.ucsd.edu
 
 ## Vegetation carbon is important
 
-![](assignment/img/carbon-budget-2022.png){fig-align="center" width="814"}
+![](assignment/img/carbon-budget-2022.png){fig-align="center" width="814" fig-alt="diagram of 2022 global carbon budget"}
 
 ::: aside
 https://doi.org/10.5194/essd-14-4811-2022
@@ -28,7 +28,7 @@ https://doi.org/10.5194/essd-14-4811-2022
 
 ## NEON: 81 sites
 
-![](assignment/img/neon-all-sites.png){fig-align="center" width="592"}
+![](assignment/img/neon-all-sites.png){fig-align="center" width="592" fig-alt="Map of NEON sites"}
 
 ::: aside
 https://www.neonscience.org/field-sites/explore-field-sites
@@ -40,7 +40,7 @@ https://www.neonscience.org/field-sites/explore-field-sites
 -   Each tree is mapped (species)
 -   Each year, each tree is measured: status (live or dead) and diameter
 
-![](assignment/img/plot_design.png){fig-align="center"}
+![](assignment/img/plot_design.png){fig-align="center" fig-alt="diagram of NEON plot design"}
 
 ## NEON Woody Carbon
 
@@ -48,7 +48,7 @@ https://www.neonscience.org/field-sites/explore-field-sites
 -   Biomass can be converted to carbon (carbon = biomass x 0.5)
 -   Allometric relationships are from Jenkin et al. (2004)
 
-![](assignment/img/allometrics_plot.png){fig-align="center"}
+![](assignment/img/allometrics_plot.png){fig-align="center" fig-alt="graph of allometric relationship"}
 
 ## NEON Woody Carbon
 
@@ -56,23 +56,23 @@ https://www.neonscience.org/field-sites/explore-field-sites
 -   The summed carbon is divided by the area (m\^2) of the plot to standardize across plots of different size
 -   All plots within a site averaged to get a site-level carbon for each year.
 
-![](assignment/img/plot_design.png){fig-align="center"}
+![](assignment/img/plot_design.png){fig-align="center" fig-alt="diagram of NEON site design"}
 
 ## Structure of data
 
 -   Data is spread across multiple tables
 -   The data are stored in a relational database.
 
-![](assignment/img/database_structure.png){fig-align="center"}
+![](assignment/img/database_structure.png){fig-align="center" fig-alt="diagram database table relationship"}
 
 ## New skills
 
-- Reading in database in R (`collect`)
-- Joining tables to create data frames for analysis (`left_join`)
-- Filtering on strings (`str_detect`)
+-   Reading in database in R (`collect`)
+-   Joining tables to create data frames for analysis (`left_join`)
+-   Filtering on strings (`str_detect`)
 
 ## Science Question
 
-- How much carbon is stored in a forest ecosystem and how does it differ across the U.S.?
-- I am a "client" interested in the carbon storage in vegetation of different ecosystems across the continental U.S. to guide my investment in the California Carbon Market.
-- Specifically, I want carbon stocks estimates from four sites in NEON
+-   How much carbon is stored in a forest ecosystem and how does it differ across the U.S.?
+-   I am a "client" interested in the carbon storage in vegetation of different ecosystems across the continental U.S. to guide my investment in the California Carbon Market.
+-   Specifically, I want carbon stocks estimates from four sites in NEON

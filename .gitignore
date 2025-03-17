@@ -40,5 +40,6 @@ vignettes/*.pdf
 
 .DS_Store
 data_prep/raw_neon
+data
 assignment/data/*.wal
 assignment/.DS_Store
