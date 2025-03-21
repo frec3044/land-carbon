@@ -8,7 +8,7 @@ editor: visual
 
 ## Atmospheric CO2 is rising
 
-![](assignment/img/keeling-curve.png){fig-align="center"  fig-alt="graph of atmospheric CO2 over time from the Keeling Curve"}
+![](assignment/img/keeling-curve.png){fig-align="center" fig-alt="graph of atmospheric CO2 over time from the Keeling Curve"}
 
 ::: aside
 https://keelingcurve.ucsd.edu

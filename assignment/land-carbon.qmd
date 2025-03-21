@@ -257,7 +257,9 @@ Calculate the vegetation carbon stocks of each site for each year using the foll
 
 **Question 2:** 
 
-Using join functions and different tables in the databaset to create a new table with the following columns: `siteID`, `plotID`, `individualID`,`taxonID`, `year`, `plantStatus`, `stemDiameter`, `B0`, `B1`.  Only include the four focal sites. Use the function `colnames()` to show the column names of your table.
+Using join functions and different tables in the databaset to create a new table with the following columns: `siteID`, `plotID`, `individualID`,`taxonID`, `year`, `plantStatus`, `stemDiameter`, `B0`, `B1`.  Only include the four focal sites. Use the function `colnames()` to show the column names of your table.  
+
+*Do not transfer more data than needed from the database to memory*
 
 **Answer 2:**
 
