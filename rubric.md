@@ -1,6 +1,6 @@
 # Land carbon module: Detailed Rubric
 
-## Module weight: 25 pts
+## Module weight: X pts
 
 Question 1:
 
