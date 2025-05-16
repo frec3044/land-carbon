@@ -22,7 +22,7 @@ Question 3:
 
 - Full Credit: Provides new table with only live trees and a new column with the correctly calculated carbon.  Tidyverse functions are used.
 
-- Partial Credit: Code provided but does not filter to only have live trees and/or does not include all the steps to calculate carbon for each tree OR does not use tidyverse functions
+- Partial Credit: Code provided but does not filter to only have live trees OR does not include all the steps to calculate carbon for each tree OR incorrectly applies B0 and B1 OR does not use tidyverse functions
 
 - No Credit: no code or answer provided or code provided is not useful for solving the problem.
 
@@ -79,9 +79,9 @@ Question 9:
 
 Question 10:
 
-- Full Credit: Insightful text answer provided connects to the hypothesis and explaination in Question 1
+- Full Credit: Insightful text answer provided connects to the hypothesis and explanation in Question 1
 
-- Partial Credit: Answer is minimal (only says yes or no).
+- Partial Credit: Answer is minimal (only says yes or no) OR answer does not connect back to Question 1
 
 - No Credit: No answer provided.
 
@@ -99,4 +99,4 @@ GitHub
 
 -   Partial Credit: Assignment found on course GitHub, but only a single commit was provided (no evidence that the student saved and committed progress) or missing HTML on GitHub.
 
--   No Credit: Assignment not found on the course GitHub organization
+-   No Credit: Assignment not found on the course GitHub organization OR no commits on GitHub found.

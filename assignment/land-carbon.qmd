@@ -42,7 +42,7 @@ Explore the descriptions of our four focal NEON sites at <https://www.neonscienc
 
 **Question 1:** 
 
-Based on information about location and ecosystem type, rank the sites in order of 1 = most tree vegetation carbon per unit area, 4 = least tree vegetation carbon per unit area. Carbon per unit area is the average carbon for the same area at each site (e.g., m2 of land).  *Describe the reasons why you choose the order.*
+Based on information about location and ecosystem type, rank the four focal sites in order of 1 = most tree vegetation carbon per unit area, 4 = least tree vegetation carbon per unit area. Carbon per unit area is the average carbon for the same area at each site (e.g., m2 of land).  *Describe the reasons why you choose the order.*
 
 **Answer 1**
 
@@ -164,6 +164,13 @@ We can also see that all rows for a `siteID` share the same `domainID`.
 ```{r}
 individual_domain |> filter(siteID == "ORNL") |> select(siteID, individualID, domainID)
 ```
+### Closing database
+
+When you are finished pulling data from database, it is good practice to close it using the following code:
+
+```{r}
+dbDisconnect(con)
+```
 
 ### String operations
 
@@ -221,6 +228,7 @@ individual_domain |>
 
 Overall, the `stringr` package in the tidyverse is very useful for working with strings in data frames. You can learn more [here](https://r4ds.hadley.nz/strings.html#subsetting).
 
+
 ## Part 3: Examine data
 
 The database you will be analyzing has five tables, but you will focus on four of them (the domain table was just for demonstration above). The structure of the data is described in the figure below. The arrows designate the different "keys" that link across the tables. The other variables are the data in the tables that you will use for the analysis.
@@ -245,6 +253,7 @@ Hints for calculating carbon in live trees:
 
 -   The `plantStatus` column has whether the tree was alive at the time of measurement, but there are multiple types of live trees. Be sure your analysis includes all the types of live trees. You may need to use string manipulation and filter functions in the `stringr` package.\
 -   The Climate Action Reserve project (an official carbon accounting organization for the California Carbon Exchange) provides allometric relationships to use to calculate **aboveground biomass**. The allometric equations for each species can be found in the "allometrics" table. You will need to **join** the parameters (B0 and B1) in "allometrics" to your table with the diameter measurements. The parameters we use come from Table 4 in the Jenkins et al. 2003 in the assignments directory. The equation for converting diameter to biomass is at the bottom of Table 4 in Jenkins et al. 2003.
+-   In R, the log(x) function is the natural log (base e) of x and the exp(x) function is e^x.
 -   After calculating the aboveground biomass, you will need to calculate the belowground biomass (i.e., roots). Belowground biomass is assumed to be 30% of aboveground biomass Be sure to add this additional biomass to your calculation of vegetation biomass.
 -   Remember that only 50% of biomass is carbon so you will need to convert from biomass to carbon.\
 The **site level** value in each year is the mean of the plots at the site. Remember that we are only interested in the "Tower" plots.
@@ -346,6 +355,10 @@ Describe how your data analysis supports your hypothesis from Question 1. What a
 ## Rendering and committing
 
 Remember to Render your document as an `HTML` and comment+push to GitHub your code and HTML document.
+
+Potential issues with rendering:
+
+  - You may have issues with you database connection when you render.  You can try running `dbDisconnect(con)` and/or restarting Rstudio.
 
 # Attribution
 
