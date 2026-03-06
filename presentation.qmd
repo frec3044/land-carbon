@@ -6,7 +6,7 @@ format:
 editor: visual
 ---
 
-## Atmospheric CO2 is rising
+## Atmospheric CO~2~ is rising
 
 ![](assignment/img/keeling-curve.png){fig-align="center" fig-alt="graph of atmospheric CO2 over time from the Keeling Curve"}
 
@@ -14,17 +14,41 @@ editor: visual
 https://keelingcurve.ucsd.edu
 :::
 
+## What can we do reduce atmospheric CO~2~?
+
+-   Decrease emissions of fossil fuels
+-   Increase removals from the atmosphere
+-   What removes CO~2~ from the atmosphere?
+
+## Concepts in the global carbon budget
+
+-   ⚫️ Stocks: where you can find carbon stored
+-   ⬆️ Fluxes: the transfer of carbon between stocks
+-   Units are Gigatons of C / year (Giga = 10\^9, 1 ton = 1000 grams)
+-   1 Gt = 1,000,000,000 water bottles
+
+## Global Carbon Budget
+
+![](assignment/img/carbon-budget-2025.png){fig-align="center" fig-alt="diagram of 2022 global carbon budget"}
+
+~https://doi.org/10.5194/essd-2025-659~
+
+## Role of vegetation in global carbon budget
+
+-   9.8 Gt/yr emissions to atmospheric CO~2~ 
+-   Atmospheric CO~2~ only goes up by 5.6 (Gt/yr) = 57% (half the warming!)
+-   25% of emissions are absorbed by terrestrial ecosystems
+
 ## Vegetation carbon is important
 
-![](assignment/img/carbon-budget-2022.png){fig-align="center" width="814" fig-alt="diagram of 2022 global carbon budget"}
+-   Increasing carbon on land (e.g., forests) decreases carbon in the atmosphere
+-   Decreasing carbon in the atmosphere, decreasing global temperatures (or prevents more warming)
+-   Can we manage the land to increase the amount of carbon in ecosystems?
+-   Basis for carbon markets - you pay for my extra ecosystem carbon to offset your fossil fuel emissions)
 
-::: aside
-https://doi.org/10.5194/essd-14-4811-2022
-:::
+## Measuring Carbon: NEON
 
-## NEON
-
-{{< video https://www.youtube.com/embed/39YrzpxVRF8 width="100%" height="85%">}}
+{{< video https://youtu.be/39YrzpxVRF8 width="100%" height="85%">}}
 
 ## NEON: 81 sites
 
@@ -76,3 +100,10 @@ https://www.neonscience.org/field-sites/explore-field-sites
 -   How much carbon is stored in a forest ecosystem and how does it differ across the U.S.?
 -   I am a "client" interested in the carbon storage in vegetation of different ecosystems across the continental U.S. to guide my investment in the California Carbon Market.
 -   Specifically, I want carbon stocks estimates from four sites in NEON
+
+## Structure of module
+
+- Today, you will make a hypothesis about patterns in carbon and submit to Canvas (Assignment 6.1)
+- Thursday: Training in databases
+- Tuesday: In-class database problem
+- Thursday: Quiz and introduction to the cloud

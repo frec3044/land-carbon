@@ -13,21 +13,25 @@ library(DBI)
 library(duckdb)
 ```
 
-## Science question
+## GitHub link
+
+Provide a link to your assignment GitHub repository here:
+
+# Science question
 
 How much carbon is stored in a forest ecosystem, and how does it differ across the U.S.?
 
-## Background on estimating carbon stocks
+# Background on estimating carbon stocks
 
 One common approach to estimating carbon in woody vegetation is by measuring the diameter of each individual tree over a certain size in a set area (called a plot). The diameter of each tree is converted to mass (called biomass) using equations that use diameter to predict biomass (called allometric relationships). Allometric relationships are statistical models created by measuring a tree's diameter before cutting it down and weighing it. A general relationship for a species can be created by combining these harvested trees into a single analysis. Allometric relationships typically estimate aboveground biomass, which needs to be converted to carbon by multiplying by 0.5 (biomass is about 50% carbon).
 
-The total biomass of a tree is the sum of aboveground and belowground carbon. Since belowground carbon is less commonly measured (it requires digging up the tree roots), we can use ratios of aboveground to belowground carbon from a limited set of trees where the entire tree was extracted.  The ratio is used to estimate belowground carbon in trees where we only have diameter measurements.
+The total biomass of a tree is the sum of aboveground and belowground carbon. Since belowground carbon is less commonly measured (it requires digging up tree roots), we can use ratios of aboveground to belowground carbon from a limited set of trees in which the entire tree was extracted.  The ratio is used to estimate belowground carbon in trees where we only have diameter measurements.
 
 Once total tree carbon (i.e., units of kg C per tree) is calculated for each tree in a plot, the density of carbon for each plot (i.e., kg C per m2) is calculated by summing the individual trees and dividing the plot sum by the plot area.
 
-## Your charge!
+# Your charge!
 
-I am a client interested in the carbon storage in vegetation of different ecosystems across the continental U.S. to guide my investment in the [California Carbon Market.](https://ww2.arb.ca.gov/our-work/programs/compliance-offset-program)
+I am a client interested in carbon storage in vegetation across different ecosystems across the continental U.S. to inform my investment in the [California Carbon Market](https://ww2.arb.ca.gov/our-work/programs/compliance-offset-program).
 
 I need carbon stocks using measurements for the following sites within the National Ecological Observatory Network. In particular, I am interested in the following sites:
 
@@ -38,21 +42,23 @@ I need carbon stocks using measurements for the following sites within the Natio
 
 ## Part 1: Develop hypotheses
 
-Explore the descriptions of our four focal NEON sites at <https://www.neonscience.org/field-sites/field-sites-map/list>, how the sites look on the satellite image in the site description, and your general knowledge about ecosystem science to develop your hypothesizes for the following question:
+Explore the descriptions of our four focal NEON sites at <https://www.neonscience.org/field-sites/field-sites-map/list>, how the sites look on the satellite image in the site description, and your general knowledge about ecosystem science to develop your hypotheses for the following question:
 
 **Question 1:** 
 
-Based on information about location and ecosystem type, rank the four focal sites in order of 1 = most tree vegetation carbon per unit area, 4 = least tree vegetation carbon per unit area. Carbon per unit area is the average carbon for the same area at each site (e.g., m2 of land).  *Describe the reasons why you choose the order.*
+Based on information about location and ecosystem type, rank the four focal sites in order of 1 = most tree vegetation carbon per unit area, 4 = least tree vegetation carbon per unit area. Carbon per unit area is the average carbon for the same area at each site (e.g., m2 of land).  *Describe the reasons why you chose the order.*
 
 **Answer 1**
+
+Provide your answer by the next Thursday class period on Canvas Assignment 6.1.
 
 ## Part 2: Download and Merge data products
 
 This module uses data from the [National Ecological Observatory Network](https://www.neonscience.org). Specifically, it uses the Vegetation Structure data product: [DP1.10098.001](https://data.neonscience.org/data-products/DP1.10098.001).
 
-Working with data from NEON and many other sources requires working with data spread across different tables. For example, one table may include the climate data for a set of focal locations, while another table may include data collected on a visit to the site. Higher-level analyses that use the climate data to understand the field data require linking the two tables.
+Working with data from NEON and many other sources requires handling data spread across multiple tables. For example, one table may include climate data for a set of focal locations, while another may include data collected during a site visit. Higher-level analyses that use the climate data to understand the field data require linking the two tables.
 
-Furthermore, environmental data can be "big data." There are many definitions of big data, but I will use a simple one: the computer memory (RAM, not hard disk) required to store your data is bigger than your computer. When using this "big data," your computer will crash if you try to load or read all the data at once.
+Furthermore, environmental data can be "big data." There are many definitions of big data, but I will use a simple one: the computer memory (RAM, not the hard disk) required to store your data is greater than your computer's capacity. When using this "big data," your computer will crash if you try to load or read all the data at once.
 
 The typical RAM on a laptop is 8 - 16 GB, and the Hard Disk is 500 GB—1 TB, so you can store more on your hard disk than you can analyze in R.
 
@@ -62,18 +68,18 @@ Databases are a solution. They allow you to load only the parts of the data that
 
 In this module, you will work with the NEON data in a database form. I have cleaned up the NEON data from the raw form into a structure better suited for learning how to work with databases and joins. The data is real, and the analysis that you will produce is genuine.
 
-The database a collection of data tables stored a single file called `neon.duckdb` in the `assignment/data` subdirectory.
+The database is a collection of data tables stored in a single file called `neon.duckdb` in the `assignment/data` subdirectory.
 
 You can learn more about databases in R [here](https://r4ds.hadley.nz/databases.html) and about the particular type of database called a [DuckDB](https://r4ds.hadley.nz/databases.html#in-this-book)
 
-First, you need to [connect](%5Bhttps://r4ds.hadley.nz/databases.html#in-this-book%5D) to the database using the `dbConnect` function in the `DBI` package. You need to tell it the type of database (`duckdb()`) and the directory of the database file.
+First, you need to [connect](%5Bhttps://r4ds.hadley.nz/databases.html#in-this-book%5D) to the database using the `dbConnect` function in the `DBI` package. You need to specify the database type (`duckdb()`) and the directory of the database file.
 
 ```{r}
 con <- dbConnect(duckdb(),
                  dbdir="data/neon.duckdb")
 ```
 
-The connection does not load any data into memory for you to analyze. The connection allows you to start looking at the database before loading data into memory.\
+The connection does not load any data into memory for you to analyze. The connection lets you start inspecting the database before loading data into memory.\
 
 First, what tables are in the [database](%5Bhttps://r4ds.hadley.nz/databases.html#in-this-book%5D)?
 
@@ -89,19 +95,19 @@ individual <- tbl(con, "individual")
 
 Imagine that the individual table is huge (e.g., every tree measured by the Forest Service across the U.S.). We don't want to use the `tbl` function to load all the data into RAM because that will cause R to crash.
 
-Fortunately, R uses the concept of "lazy loading." Look at the `individual` table to get a preview of the table that looks like.
+Fortunately, R uses the concept of "lazy loading." Look at the `individual` table to get a preview of what the table looks like.
 
 ```{r}
 individual
 ```
 
-However, if you look deeper, it doesn't have all the rows. The preview only has 1000 rows. In fact, it does not have any rows
+However, if you look more closely, it doesn't include all the rows. The preview only has 1000 rows. In fact, it does not have any rows
 
 ```{r}
 nrow(individual)
 ```
 
-This is because the data won't be loaded into memory until you specifically tell it to do so (hence being "lazy"). The [`collect()` function](https://r4ds.hadley.nz/databases.html#dbplyr-basics) is what finally pulls the data into memory. In the example below, you can see that there are now many rows of data.
+This is because the data won't be loaded into memory until you explicitly tell it to (hence being "lazy"). The [`collect()` function](https://r4ds.hadley.nz/databases.html#dbplyr-basics) is what finally pulls the data into memory. In the example below, you can see that there are now many rows of data.
 
 ```{r}
 individual <- tbl(con, "individual") |> 
@@ -109,7 +115,7 @@ individual <- tbl(con, "individual") |>
 nrow(individual)
 ```
 
-However, "collecting" the entire data table does not leverage the power of using a database because it is pulling the entire data table into memory. The advantage of using a database is that you are able to only load the data that you actually need. In many cases, you don't need all rows or columns of a data table for your analysis.
+However, "collecting" the entire data table does not leverage the power of a database, as it pulls the entire table into memory. The advantage of using a database is that you can load only the data you actually need. In many cases, you don't need all rows or columns of a data table for your analysis.
 
 For example, the individual table has many more sites (`siteID`) than we want.
 
@@ -117,11 +123,11 @@ For example, the individual table has many more sites (`siteID`) than we want.
 individual |> distinct(siteID)
 ```
 
-You can `filter` only the rows you want before calling `collect`. Any filtering or selecting before a collect call will reduce the size of the data that you are actually moving from hard disk to RAM. The following uses the `%in%` function to ask to keep data from any of the three `siteID` values in the vector.
+You can `filter` only the rows you want before calling `collect`. Any filtering or selecting before a collect call will reduce the size of the data that you are actually moving from the hard disk to RAM. The following uses the `%in%` function to ask to keep data from any of the three `siteID` values in the vector.
 
 ```{r}
 individual <- tbl(con, "individual") |> 
-  filter(siteID %in% c("ABBY","GRSM", "ORNL")) |> 
+  filter(siteID %in% c("ABBY", "GRSM", "ORNL")) |> 
   collect()
 
 nrow(individual)
@@ -129,15 +135,15 @@ nrow(individual)
 
 ### Joining tables in R
 
-Data in databases are spread across tables. This is done to help reduce the size of the data. For example, if every tree is in a site and each site is in a domain, do we need to have a column for the `domainID` in the same table as the individual trees? We could, but adding the extra column with a lot of repeated information (i.e., if there are 90 sites but three domains, then the same three domains will be repeated over and over in the column) would require unnecessary use of storage and memory. Alternatively, we have the `siteID` in the tree table and another table that has the `domainID` that each site belongs to? This would reduce the storage requirement for the database. Therefore, databases use multiple tables.
+Data in databases are spread across tables. This is done to help reduce the size of the data. For example, if every tree is in a site and each site is in a domain, do we need a `domainID` column in the same table as the individual trees? We could, but adding an extra column with a lot of repeated information (e.g., if there are 90 sites but three domains, the same three domains will be repeated over and over in the column) would unnecessarily use storage and memory. Alternatively, we have the `siteID` in the tree table, and another table with the `domainID` each site belongs to. This would reduce the database's storage requirement. Therefore, databases use multiple tables.
 
-However, what if you want to filter the trees by which domain they are in? What if you want to average the trees at the domain scale? To do this, you actually need a domain column in the same table as your trees. "Joining" is how you combine the two tables together.
+However, what if you want to filter the trees by which domain they are in? What if you want to average the trees at the domain scale? To do this, you actually need a domain column in the same table as your trees. "Joining" is how you combine two tables.
 
-To explore joins,  load another table (domains table) and filter to the sites that are desired.
+To explore joins, load another table (`domains`) and filter to the desired sites.
 
 ```{r}
 neon_domains <- tbl(con, "domains") |> 
-  filter(siteID %in% c("ABBY","GRSM", "ORNL")) |> 
+  filter(siteID %in% c("ABBY", "GRSM", "ORNL")) |> 
   collect()
 ```
 
@@ -145,7 +151,7 @@ There are many types of joins, `left_join`, `right_join`, `inner_join`, and `ful
 
 Read more about joins [here](https://r4ds.hadley.nz/joins.html).
 
-We are going to use a `left_join` because we want to keep all the rows in the table on the left of the function call (the `individual` table) and merge in the matching data from the right table in the function call (the `neon_domains` table). By using siteID as the matching key (`by = "siteID"`), we are assigning the values in the other columns of the domains table (i.e., `domainID`) to the rows with matching `siteID`. If there are rows in the left table (individual) that don't have matching siteIDs in the right table, the join puts in NA for `domainID` in the left table. If there are multiple rows in the right table that match a row in the left table, an error occurs.
+We are going to use a `left_join` because we want to keep all the rows in the table on the left of the function call (the `individual` table) and merge in the matching data from the right table in the function call (the `neon_domains` table). By using siteID as the matching key (`by = "siteID"`), we are assigning the values in the other columns of the domains table (i.e., `domainID`) to the rows with matching `siteID`. If there are rows in the left table (individual) that don't have matching siteIDs in the right table, the join sets `domainID` to NA in the left table. If there are multiple rows in the right table that match a row in the left table, an error occurs.
 
 ```{r}
 individual_domain <- left_join(individual, neon_domains, by = "siteID")
@@ -153,7 +159,7 @@ individual_domain <- left_join(individual, neon_domains, by = "siteID")
 
 Again, the (`by = "siteID"`) is the matching key. If necessary, multiple columns can be used to match (e.g., (`by = c("siteID", "individualID")) to correctly join two tables.
 
-Following the left join, we can see that there is a new column called `domainID`.
+Following the left join, we can see a new column named `domainID`.
 
 ```{r}
 colnames(individual_domain)
@@ -164,9 +170,10 @@ We can also see that all rows for a `siteID` share the same `domainID`.
 ```{r}
 individual_domain |> filter(siteID == "ORNL") |> select(siteID, individualID, domainID)
 ```
+
 ### Closing database
 
-When you are finished pulling data from database, it is good practice to close it using the following code:
+When you are finished pulling data from the database, it is good practice to close it using the following code:
 
 ```{r}
 dbDisconnect(con)
@@ -188,13 +195,13 @@ However, often you want to filter by the presence of particular characters in a 
 filter(university %in% c("Virginia Tech", "University of Virginia"))
 ```
 
-you could filter on the presence of the word "Virginia" in the university variable. To do this, you can use a function from the [`stringr` package](https://r4ds.hadley.nz/strings.html) called `str_detect()`. The function returns TRUE or FALSE if the value for the variable has that string in it. You then filter using the function
+You could filter on the presence of the word "Virginia" in the university variable. To do this, you can use a function from the [`stringr` package](https://r4ds.hadley.nz/strings.html) called `str_detect()`. The function returns TRUE or FALSE depending on whether the variable's value contains that string. You then filter using the function
 
 ```         
 filter(str_detect(university, "Virginia"))
 ```
 
-In the NEON data, each tree has an `individualID`. Imagine that we did not have our table with `domainID`, but you only wanted trees from domain 7 (`D07`). Notice how the `individualID` is a string, and the string has the `domainID` in it (the example below is from the first row of the data).
+In the NEON data, each tree has an `individualID`. Imagine that we did not have our table with `domainID`, but you only wanted trees from domain 7 (`D07`). Notice that `individualID` is a string, and the string contains `domainID` (the example below is from the first row of the data).
 
 ```{r}
 individual$individualID[1]
@@ -231,17 +238,17 @@ Overall, the `stringr` package in the tidyverse is very useful for working with 
 
 ## Part 3: Examine data
 
-The database you will be analyzing has five tables, but you will focus on four of them (the domain table was just for demonstration above). The structure of the data is described in the figure below. The arrows designate the different "keys" that link across the tables. The other variables are the data in the tables that you will use for the analysis.
+The database you will be analyzing has five tables, but you will focus on four of them (the domain table was included only for the demonstration above). The structure of the data is described in the figure below. The arrows designate the different "keys" that link across the tables. The other variables are the data in the tables that you will use for the analysis.
 
 ![database structure](img/database_structure.png)
 
--   When and individual tree is first measured in a plot (`plotID`) it is given an `individualID` and a species identification (`taxonID`). This is saved in the mapping_tagging table.\
+-   When an individual tree is first measured in a plot (`plotID`), it is given an `individualID` and a species identification (`taxonID`). This is saved in the mapping_tagging table.\
 -   Each time a tree (`individualID`) is measured, the date of measurement is recorded (`Year`), the status (`plantStatus`) of the tree (is it alive or dead), and the diameter (in centimeters) of the stem at breast height (`stemDiameter`). This is saved in the individual table.\
 -   Each plot (`plotID`) is within a site (`siteID`). Each plot has a `plotType` to designate where in the site it is located (i.e., around the center measurement tower), the vegetation class of the plot is recorded (`nlcdClass`), and the area (in square meters) of the plot is recorded (`totalSampledAreaTrees`). This is saved in the plot table.
 
 The figure below is diagrams this NEON data collection design. ![database structure](img/plot_design.png)
 
-- Across the U.S., researchers have measured tree diameters and cut down the trees to weigh them. For each species (`taxonID`), they then develop equations that use diameter (in centimeters) to predict the weight (biomass). The equation has two parameters (`B0` and `B1`). This is saved in the allometrics table. The figure below is an example of the relationship between diameter and biomass. The equation for converting diameter to biomass is at the bottom of Table 4 in Jenkins et al. 2003.
+- Across the U.S., researchers have measured tree diameters and cut down the trees to weigh them. For each species (`taxonID`), they then develop equations that use diameter (in centimeters) to predict the weight (biomass). The equation has two parameters (`B0` and `B1`). This is saved in the allometrics table. The figure below illustrates the relationship between diameter and biomass. The equation for converting diameter to biomass is at the bottom of Table 4 in Jenkins et al. 2003.
 
 ![database structure](img/allometrics_plot.png)
 
@@ -251,21 +258,21 @@ This step will challenge you to develop a workflow using the data science skills
 
 Hints for calculating carbon in live trees:
 
--   The `plantStatus` column has whether the tree was alive at the time of measurement, but there are multiple types of live trees. Be sure your analysis includes all the types of live trees. You may need to use string manipulation and filter functions in the `stringr` package.\
--   The Climate Action Reserve project (an official carbon accounting organization for the California Carbon Exchange) provides allometric relationships to use to calculate **aboveground biomass**. The allometric equations for each species can be found in the "allometrics" table. You will need to **join** the parameters (B0 and B1) in "allometrics" to your table with the diameter measurements. The parameters we use come from Table 4 in the Jenkins et al. 2003 in the assignments directory. The equation for converting diameter to biomass is at the bottom of Table 4 in Jenkins et al. 2003.
+-   The `plantStatus` column indicates whether the tree was alive at the time of measurement, but there are multiple types of live trees. Be sure your analysis includes all the types of live trees. You may need to use string manipulation and filter functions in the `stringr` package.\
+-   The Climate Action Reserve project (an official carbon accounting organization for the California Carbon Exchange) provides allometric relationships to use to calculate **aboveground biomass**. The allometric equations for each species are listed in the "allometrics" table. You will need to **join** the parameters (B0 and B1) in "allometrics" to your table with the diameter measurements. The parameters we use come from Table 4 in Jenkins et al. 2003 in the assignments directory. The equation for converting diameter to biomass is at the bottom of Table 4 in Jenkins et al. 2003.
 -   In R, the log(x) function is the natural log (base e) of x and the exp(x) function is e^x.
 -   After calculating the aboveground biomass, you will need to calculate the belowground biomass (i.e., roots). Belowground biomass is assumed to be 30% of aboveground biomass Be sure to add this additional biomass to your calculation of vegetation biomass.
 -   Remember that only 50% of biomass is carbon so you will need to convert from biomass to carbon.\
-The **site level** value in each year is the mean of the plots at the site. Remember that we are only interested in the "Tower" plots.
--   Be very careful with the units at each step: the final units should be kgC m\^-2 (Kilogram of carbon per meter squared). The order of magnitude should be 1 - 100.
+The **site level** value for each year is the mean of the plots at the site. Remember that we are only interested in the "Tower" plots.
+-   Be very careful with the units at each step: the final units should be kgC m\^-2 (Kilogram of carbon per meter squared). The order of magnitude should be 1-100.
 
-Please remember to take a look at the description in **Background on estimating carbon stocks** about how to calculate carbon stocks.
+Please remember to take a look at the description in the **Background on estimating carbon stocks** section on how to calculate carbon stocks.
 
 Calculate the vegetation carbon stocks of each site for each year using the following steps: 
 
 **Question 2:** 
 
-Using join functions and different tables in the databaset to create a new table with the following columns: `siteID`, `plotID`, `individualID`,`taxonID`, `year`, `plantStatus`, `stemDiameter`, `B0`, `B1`.  Only include the four focal sites. Use the function `colnames()` to show the column names of your table.  
+Using join functions and different tables in the database to create a new table with the following columns: `siteID`, `plotID`, `individualID`, `taxonID`, `year`, `plantStatus`, `stemDiameter`, `B0`, `B1`.  Only include the four focal sites. Use the function `colnames()` to show the column names of your table.  
 
 *Do not transfer more data than needed from the database to memory*
 
@@ -277,7 +284,7 @@ Using join functions and different tables in the databaset to create a new table
 
 **Question 3:** 
 
-Using the table from Question 2, create a new table that only has live trees and includes a column that is the carbon of each tree in each `plotID` in each `year` following the instructions provided at the top of Part 4. Use the function `colnames()` to show the column names of your table.
+Using the table from Question 2, create a new table that only has live trees and includes a column that is the carbon of each tree in each `plotID` in each `year`, following the instructions provided at the top of Part 4. Use the function `colnames()` to show the column names of your table.
 
 **Answer 3:**
 
@@ -287,7 +294,7 @@ Using the table from Question 2, create a new table that only has live trees and
 
 **Question 4:** 
 
-Using the table from Question 3, calculate the total carbon of each plot in each year. Your columns should be: `siteID`. `plotID`, `carbon`, `year`. Use the function `colnames()` to show the column names of your table.
+Using the table from Question 3, calculate the total carbon of each plot in each year. Your columns should be: `siteID`, `plotID`, `carbon`, `year`. Use the function `colnames()` to show the column names of your table.
 
 **Answer 4:**
 
@@ -297,7 +304,7 @@ Using the table from Question 3, calculate the total carbon of each plot in each
 
 **Question 5:** 
 
-Using the table from Question 4, use a join to associate a plot area and plot type with each plot. Your columns should be: `siteID`, `plotID`, `carbon`, `plotType`, `totalSampledAreaTrees`,`year`. Use the function `colnames()` to show the column names of your table.
+Using the table from Question 4, use a join to associate a plot area and plot type with each plot. Your columns should be: `siteID`, `plotID`, `carbon`, `plotType`, `totalSampledAreaTrees`, and `year`. Use the function `colnames()` to show the column names of your table.
 
 ```{r}
 
@@ -314,7 +321,7 @@ Using the table from Question 5, divide the plot carbon by the plot area. Also, 
 
 **Question 7:** 
 
-Using the table Question 6, average the plots to get a value of carbon per area for each year within each site.
+Using the table for Question 6, average the plots to obtain a carbon per area value for each year at each site.
 
 ```{r}
 
@@ -326,7 +333,7 @@ I am looking for the following plots, tables, and text in the Quarto document:
 
 **Question 8:** 
 
-Generate a figure showing the mean live tree carbon stocks in site and year. You will have year on the axis and carbon stocks on the y-axis with different lines for each site. Be sure your figures are complete with units, labels, and a title. There should only be four sites on your figure. Here is an example of the plot for a different set of sites.
+Generate a figure showing the mean live tree carbon stocks in the site and year. You will have years on the x-axis and carbon stocks on the y-axis, with different lines for each site. Be sure your figures are complete with units, labels, and a title. There should only be four sites on your figure. Here is an example of the plot for a different set of sites.
 
 ![Example plot](img/example_plot.png)
 
@@ -354,13 +361,13 @@ Describe how your data analysis supports your hypothesis from Question 1. What a
 
 ## Rendering and committing
 
-Remember to Render your document as an `HTML` and comment+push to GitHub your code and HTML document.
+Remember to Render your document as an `HTML` and comment+push to GitHub your code and HTML document.  Use at least three commits that you push to GitHub.  
 
 Potential issues with rendering:
 
-  - You may have issues with you database connection when you render.  You can try running `dbDisconnect(con)` and/or restarting Rstudio.
+  - You may have issues with your database connection when you render.  You can try running `dbDisconnect(con)` and/or restarting RStudio.
 
 # Attribution
 
-Include citations of any AI-generated assistance or discussion with classmates (per policy in the syllabus). Proper documentation of AI-generated assistance includes the prompt, the source (e.g., ChatGPT), and the significant parts of the response.  Proper documentation of discussion with classmates includes listing their names and the components discussed.  
+Include citations of any AI-generated assistance or discussion with classmates (per policy in the syllabus). Proper documentation of AI-generated assistance includes the prompt, the source (e.g., ChatGPT), and the significant parts of the response.  Proper documentation of a discussion with classmates includes listing their names and the components discussed.  
 
