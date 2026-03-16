@@ -1113,7 +1113,123 @@ margin-right: 0; }
 <li>Today, you will make a hypothesis about patterns in carbon and submit to Canvas (Assignment 6.1)</li>
 <li>Thursday: Training in databases</li>
 <li>Tuesday: In-class database problem</li>
-<li>Thursday: Quiz and introduction to cloud</li>
+<li>Thursday: Quiz and introduction to the cloud</li>
+</ul>
+</section>
+<section id="what-is-a-database" class="slide level2">
+<h2>What is a database?</h2>
+<ul>
+<li>A structured, persistence storage of data</li>
+<li>Relational (strict standards) vs Non-relational (more flexible)</li>
+<li>We focus on relational databases here</li>
+</ul>
+</section>
+<section id="database-vs.-csv" class="slide level2">
+<h2>Database vs. CSV</h2>
+<ul>
+<li>A CSV is like a dataframe (table) where all columns need to have same number of rows</li>
+<li>Databases can have multiple tables</li>
+<li>Tables can have different numbers of rows</li>
+<li>Database has data storage and access efficiency</li>
+</ul>
+</section>
+<section id="what-is-a-relationship-database" class="slide level2">
+<h2>What is a relationship database?</h2>
+<ul>
+<li>Data in tables with rows and columns</li>
+<li>Tables connect to one another through keys
+<ul>
+<li>Primary (ids within a table) - one per table</li>
+<li>Foreign (reference ids in another table) - can have multiple per table</li>
+</ul></li>
+</ul>
+</section>
+<section id="you-have-the-skills-to-work-with-databases" class="slide level2">
+<h2>You have the skills to work with databases!</h2>
+<ul>
+<li>Filter, Select, Group By, Summarize</li>
+<li>Develop skills in joins within this module</li>
+</ul>
+</section>
+<section id="sql-is-the-databse-language" class="slide level2">
+<h2>SQL is the databse language</h2>
+<ul>
+<li>SQL (Structured Query Language)</li>
+<li>Tidyverse helps translate functions in SQL language</li>
+<li>We focus on tidyverse approach but know that SQL is under the hood</li>
+</ul>
+<pre><code>species &lt;- tbl(con, &quot;species&quot;) |&gt;
+  filter(genus == &quot;Calamospiza&quot;) |&gt; 
+  select(taxa)</code></pre>
+<p>is actually</p>
+<pre><code>&quot;SELECT taxa FROM species WHERE genus == &#39;Calamospiza&#39;&quot;</code></pre>
+<p>in SQL</p>
+</section>
+<section id="brand-of-database" class="slide level2">
+<h2>“Brand” of database</h2>
+<ul>
+<li>Common types of relationship databases are PostgreSQL, MySQL, SQLite, duckDB</li>
+<li>We use duckDB in this class</li>
+<li>Concepts and code access are largely the same with details different</li>
+</ul>
+</section>
+<section id="accessing-database" class="slide level2">
+<h2>Accessing database</h2>
+<p>First connect to database</p>
+<pre><code>library(DBI)
+con &lt;- dbConnect(duckdb::duckdb(), &quot;rat_data.db&quot;)</code></pre>
+<p>extract data</p>
+<pre><code>species &lt;- tbl(con, &quot;species&quot;) |&gt;
+  filter(genus == &quot;Calamospiza&quot;) |&gt; 
+  select(taxa) |&gt; 
+  collect()</code></pre>
+<p>close database</p>
+<pre><code>dbDisconnect(con)</code></pre>
+</section>
+<section id="building-databases" class="slide level2">
+<h2>Building databases</h2>
+<ul>
+<li>Create database (or open existing)</li>
+<li>Add tables</li>
+<li>Be sure that tables have keys that connect them!</li>
+<li>Be sure to append when adding data to existing database</li>
+</ul>
+</section>
+<section id="keys-are-critical-for-joining-tables-with-a-database" class="slide level2">
+<h2>Keys are critical for joining tables with a database</h2>
+<ul>
+<li>Joins are used to combine tables</li>
+<li>Pulling data from one table into another</li>
+<li>Using one table to filter another table</li>
+</ul>
+</section>
+<section id="mutating-joins" class="slide level2">
+<h2>Mutating joins</h2>
+<ul>
+<li>Never lose information from the left (or right) table so fills with NA</li>
+<li>Mutate join because add columns</li>
+<li><code>left_join</code>: Keep all rows in the left side table (e.g., <code>df1</code> in <code>left_join(df1, df2)</code>)</li>
+<li><code>right_join</code>: Keep all rows in the right side table (e.g., <code>df2</code> in <code>right_join(df1, df2)</code>)</li>
+<li><code>inner_join</code>: Keep all rows in both tables</li>
+<li><code>full_join</code>: Keep all rows in either table</li>
+</ul>
+</section>
+<section id="filtering-joins" class="slide level2">
+<h2>Filtering joins</h2>
+<ul>
+<li>Use information in one table to reduce the number of rows in another table</li>
+<li>Does not add columns to the left side.</li>
+<li><code>semi_join</code>: keep rows in left side table with match in right table</li>
+<li><code>anti_join</code>: keeps rows in left side table without match in right table</li>
+</ul>
+</section>
+<section id="defining-keys" class="slide level2">
+<h2>Defining keys</h2>
+<ul>
+<li>tidyverse will try to detect the keys by looking at columns with the same names</li>
+<li>Better to specify the keys used to join tables</li>
+<li>While <code>left_join(df1, df2)</code> works, <code>left_join(df1, df2, by = c(&quot;site_id&quot;)</code> is better</li>
+<li><code>by</code> allows you to join using columns with different names: <code>left_join(df1, df2, by = c(&quot;site_id&quot; = &quot;siteID&quot;)</code></li>
 </ul>
 
 </section>

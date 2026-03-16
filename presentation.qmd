@@ -35,7 +35,7 @@ https://keelingcurve.ucsd.edu
 
 ## Role of vegetation in global carbon budget
 
--   9.8 Gt/yr emissions to atmospheric CO~2~ 
+-   9.8 Gt/yr emissions to atmospheric CO~2~
 -   Atmospheric CO~2~ only goes up by 5.6 (Gt/yr) = 57% (half the warming!)
 -   25% of emissions are absorbed by terrestrial ecosystems
 
@@ -103,7 +103,118 @@ https://www.neonscience.org/field-sites/explore-field-sites
 
 ## Structure of module
 
-- Today, you will make a hypothesis about patterns in carbon and submit to Canvas (Assignment 6.1)
-- Thursday: Training in databases
-- Tuesday: In-class database problem
-- Thursday: Quiz and introduction to the cloud
+-   Today, you will make a hypothesis about patterns in carbon and submit to Canvas (Assignment 6.1)
+-   Thursday: Training in databases
+-   Tuesday: In-class database problem
+-   Thursday: Quiz and introduction to the cloud
+
+## What is a database?
+
+-   A structured, persistence storage of data
+-   Relational (strict standards) vs Non-relational (more flexible)
+-   We focus on relational databases here
+
+## Database vs. CSV
+
+-   A CSV is like a dataframe (table) where all columns need to have same number of rows
+-   Databases can have multiple tables
+-   Tables can have different numbers of rows
+-   Database has data storage and access efficiency
+
+## What is a relationship database?
+
+-   Data in tables with rows and columns
+-   Tables connect to one another through keys
+    -   Primary (ids within a table) - one per table
+    -   Foreign (reference ids in another table) - can have multiple per table
+
+## You have the skills to work with databases!
+
+-   Filter, Select, Group By, Summarize
+-   Develop skills in joins within this module
+
+## SQL is the databse language
+
+-   SQL (Structured Query Language)
+-   Tidyverse helps translate functions in SQL language
+-   We focus on tidyverse approach but know that SQL is under the hood
+
+```         
+species <- tbl(con, "species") |>
+  filter(genus == "Calamospiza") |> 
+  select(taxa)
+```
+
+is actually
+
+```         
+"SELECT taxa FROM species WHERE genus == 'Calamospiza'"
+```
+
+in SQL
+
+## "Brand" of database
+
+-   Common types of relationship databases are PostgreSQL, MySQL, SQLite, duckDB
+-   We use duckDB in this class
+-   Concepts and code access are largely the same with details different
+
+## Accessing database
+
+First connect to database
+
+```         
+library(DBI)
+con <- dbConnect(duckdb::duckdb(), "rat_data.db")
+```
+
+extract data
+
+```         
+species <- tbl(con, "species") |>
+  filter(genus == "Calamospiza") |> 
+  select(taxa) |> 
+  collect()
+```
+
+close database
+
+```         
+dbDisconnect(con)
+```
+
+## Building databases
+
+-   Create database (or open existing)
+-   Add tables
+-   Be sure that tables have keys that connect them!
+-   Be sure to append when adding data to existing database
+
+## Keys are critical for joining tables with a database
+
+-   Joins are used to combine tables
+-   Pulling data from one table into another
+-   Using one table to filter another table
+
+## Mutating joins
+
+- Never lose information from the left (or right) table so fills with NA
+- Mutate join because add columns
+- `left_join`: Keep all rows in the left side table (e.g., `df1` in `left_join(df1, df2)`)
+- `right_join`: Keep all rows in the right side table (e.g., `df2` in `right_join(df1, df2)`) 
+- `inner_join`: Keep all rows in both tables
+- `full_join`: Keep all rows in either table
+
+## Filtering joins
+
+- Use information in one table to reduce the number of rows in another table
+- Does not add columns to the left side.
+- `semi_join`: keep rows in left side table with match in right table 
+- `anti_join`: keeps rows in left side table without match in right table
+
+## Defining keys
+
+- tidyverse will try to detect the keys by looking at columns with the same names
+- Better to specify the keys used to join tables
+- While `left_join(df1, df2)` works, `left_join(df1, df2, by = c("site_id")` is better
+- `by` allows you to join using columns with different names: `left_join(df1, df2, by = c("site_id" = "siteID")`
